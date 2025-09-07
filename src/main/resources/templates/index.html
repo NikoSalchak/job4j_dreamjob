@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: header"></head>
-<div th:replace="fragments/navigation :: navigation"></div>
+<head th:insert="~{fragments/header :: header}"></head>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
 <body>
 <div class="container">
     <h4>Проект job4j_dreamjob, выполняемый в рамках курса Job4j</h4>
@@ -38,7 +38,7 @@
         </table>
     </div>
 </div>
-<footer th:include="blocks/footer :: footer"></footer>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
 </body>
 </html>
 

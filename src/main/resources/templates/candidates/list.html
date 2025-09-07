@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header::header"></head>
-<div th:replace="fragments/navigation :: navigation"></div>
+<head th:insert="~{fragments/header::header}"></head>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
 <body>
 <div class="container">
     <div class="row">
@@ -23,6 +23,6 @@
         </table>
     </div>
 </div>
-<footer th:include="blocks/footer::footer"></footer>
+<footer th:insert="~{blocks/footer::footer}"></footer>
 </body>
 </html>
