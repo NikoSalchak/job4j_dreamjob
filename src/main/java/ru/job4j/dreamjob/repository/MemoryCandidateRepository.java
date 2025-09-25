@@ -26,7 +26,6 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public Candidate save(Candidate candidate) {
         candidate.setId(nextId++);
         candidates.put(candidate.getId(), candidate);
-        System.out.println(candidates);
         return candidate;
     }
 
