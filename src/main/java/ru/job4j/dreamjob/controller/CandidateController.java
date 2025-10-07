@@ -31,6 +31,8 @@ public class CandidateController {
         return "candidates/create";
     }
 
+    /** @ModelAttribute сообщает Spring, чтобы тот собрал объект Vacancy из параметров запроса.
+     * !!! Обязательно наличие пустого конструктора. !!! */
     @PostMapping("/create")
     public String create(@ModelAttribute Candidate candidate) {
         candidateService.save(candidate);

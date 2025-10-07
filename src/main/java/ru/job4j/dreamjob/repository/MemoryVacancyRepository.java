@@ -18,12 +18,12 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final ConcurrentHashMap<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
     public MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "without salary", LocalDateTime.of(2025, 9, 4, 10, 5)));
-        save(new Vacancy(0, "Junior Java Developer", "low salary", LocalDateTime.of(2025, 9, 4, 16, 22)));
-        save(new Vacancy(0, "Junior+ Java Developer", "average salary", LocalDateTime.of(2025, 9, 1, 12, 55)));
-        save(new Vacancy(0, "Middle Java Developer", "average+ salary", LocalDateTime.of(2025, 8, 4, 12, 34)));
-        save(new Vacancy(0, "Middle+ Java Developer", "high salary", LocalDateTime.of(2025, 7, 4, 15, 24)));
-        save(new Vacancy(0, "Senior Java Developer", "high+ salary", LocalDateTime.of(2025, 6, 20, 9, 0)));
+        save(new Vacancy(0, "Intern Java Developer", "without salary", LocalDateTime.of(2025, 9, 4, 10, 5), true));
+        save(new Vacancy(0, "Junior Java Developer", "low salary", LocalDateTime.of(2025, 9, 4, 16, 22), true));
+        save(new Vacancy(0, "Junior+ Java Developer", "average salary", LocalDateTime.of(2025, 9, 1, 12, 55), true));
+        save(new Vacancy(0, "Middle Java Developer", "average+ salary", LocalDateTime.of(2025, 8, 4, 12, 34), true));
+        save(new Vacancy(0, "Middle+ Java Developer", "high salary", LocalDateTime.of(2025, 7, 4, 15, 24), true));
+        save(new Vacancy(0, "Senior Java Developer", "high+ salary", LocalDateTime.of(2025, 6, 20, 9, 0), true));
     }
 
     @Override
@@ -32,7 +32,9 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 new Vacancy(nextId.getAndIncrement(),
                         vacancy.getTitle(),
                         vacancy.getDescription(),
-                        vacancy.getCreationDate()));
+                        vacancy.getCreationDate(),
+                        vacancy.getVisible()
+                        ));
     }
 
     @Override
@@ -47,7 +49,9 @@ public class MemoryVacancyRepository implements VacancyRepository {
                         oldVacancy.getId(),
                         vacancy.getTitle(),
                         vacancy.getDescription(),
-                        vacancy.getCreationDate())
+                        vacancy.getCreationDate(),
+                        vacancy.getVisible()
+                )
         ) != null;
     }
 
