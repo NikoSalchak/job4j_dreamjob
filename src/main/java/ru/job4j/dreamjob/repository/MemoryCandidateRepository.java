@@ -18,12 +18,12 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final ConcurrentHashMap<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     public MemoryCandidateRepository() {
-        save(new Candidate(0, "Salchak Niko", "junior java developer", LocalDateTime.of(2025, 8, 3, 12, 0)));
-        save(new Candidate(0, "Tregulov Zaur", "Senior java developer", LocalDateTime.of(2025, 6, 28, 13, 44)));
-        save(new Candidate(0, "Ivanov Ivan", "fronted developer", LocalDateTime.of(2025, 6, 8, 13, 4)));
-        save(new Candidate(0, "Petrov Stas", "ios developer", LocalDateTime.of(2025, 7, 5, 13, 55)));
-        save(new Candidate(0, "Petrov Emil", "mobile developer", LocalDateTime.of(2025, 6, 15, 13, 4)));
-        save(new Candidate(0, "Borisova Marina", "mobile developer", LocalDateTime.of(2025, 9, 1, 13, 24)));
+        save(new Candidate(0, "Salchak Niko", "junior java developer", LocalDateTime.of(2025, 8, 3, 12, 0), 3));
+        save(new Candidate(0, "Tregulov Zaur", "Senior java developer", LocalDateTime.of(2025, 6, 28, 13, 44), 3));
+        save(new Candidate(0, "Ivanov Ivan", "fronted developer", LocalDateTime.of(2025, 6, 8, 13, 4), 1));
+        save(new Candidate(0, "Petrov Stas", "ios developer", LocalDateTime.of(2025, 7, 5, 13, 55), 1));
+        save(new Candidate(0, "Petrov Emil", "mobile developer", LocalDateTime.of(2025, 6, 15, 13, 4), 1));
+        save(new Candidate(0, "Borisova Marina", "mobile developer", LocalDateTime.of(2025, 9, 1, 13, 24), 2));
     }
 
     @Override
@@ -32,7 +32,8 @@ public class MemoryCandidateRepository implements CandidateRepository {
                 nextId.getAndIncrement(),
                 candidate.getName(),
                 candidate.getDescription(),
-                candidate.getCreationDate()
+                candidate.getCreationDate(),
+                candidate.getCityId()
         ));
     }
 
@@ -48,8 +49,9 @@ public class MemoryCandidateRepository implements CandidateRepository {
                         oldCandidate.getId(),
                         candidate.getName(),
                         candidate.getDescription(),
-                        candidate.getCreationDate())
-        ) != null;
+                        candidate.getCreationDate(),
+                        candidate.getCityId()
+                )) != null;
     }
 
     @Override

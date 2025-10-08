@@ -18,17 +18,19 @@
                       name="description" th:field="*{description}"
                       rows="25" placeholder="Опишите ваши умения и навыки"></textarea>
         </div>
+        <div class="mb-3">
+            <label for="city"><b>Город</b></label>
+            <select class="form-control" id="city" name="cityId">
+                <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}" th:field="*{cityId}" th:selected="${city.id==cityId}"></option>
+            </select>
+        </div>
         <div class="mb-3 row">
             <div class="col-6"></div>
             <div class="col-6">
                 <div class="row">
-                    <div class="col-4"><a class="btn btn-light w-100"
-                                          th:href="@{/candidates}">Отмена</a></div>
-                    <div class="col-4"><a class="btn btn-danger w-100"
-                                          th:href="@{/candidates/delete/{id}(id=${candidate.id})}">Удалить</a></div>
-                    <div class="col-4"><button class="btn btn-success w-100"
-                                               type="submit">Обновить</button>
-                    </div>
+                    <div class="col-4"><a class="btn btn-light w-100" th:href="@{/candidates}">Отмена</a></div>
+                    <div class="col-4"><a class="btn btn-danger w-100" th:href="@{/candidates/delete/{id}(id=${candidate.id})}">Удалить</a></div>
+                    <div class="col-4"><button class="btn btn-success w-100" type="submit">Обновить</button></div>
                 </div>
             </div>
         </div>
