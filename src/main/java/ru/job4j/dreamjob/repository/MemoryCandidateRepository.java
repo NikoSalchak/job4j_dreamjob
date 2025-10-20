@@ -18,23 +18,62 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final ConcurrentHashMap<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     public MemoryCandidateRepository() {
-        save(new Candidate(0, "Salchak Niko", "junior java developer", LocalDateTime.of(2025, 8, 3, 12, 0), 3));
-        save(new Candidate(0, "Tregulov Zaur", "Senior java developer", LocalDateTime.of(2025, 6, 28, 13, 44), 3));
-        save(new Candidate(0, "Ivanov Ivan", "fronted developer", LocalDateTime.of(2025, 6, 8, 13, 4), 1));
-        save(new Candidate(0, "Petrov Stas", "ios developer", LocalDateTime.of(2025, 7, 5, 13, 55), 1));
-        save(new Candidate(0, "Petrov Emil", "mobile developer", LocalDateTime.of(2025, 6, 15, 13, 4), 1));
-        save(new Candidate(0, "Borisova Marina", "mobile developer", LocalDateTime.of(2025, 9, 1, 13, 24), 2));
+        save(new Candidate(0,
+                "Salchak Niko",
+                "junior java developer",
+                LocalDateTime.of(2025, 8, 3, 12, 0),
+                3,
+                0)
+        );
+        save(new Candidate(0,
+                "Tregulov Zaur",
+                "Senior java developer",
+                LocalDateTime.of(2025, 6, 28, 13, 44),
+                3,
+                0)
+        );
+        save(new Candidate(0,
+                "Ivanov Ivan",
+                "fronted developer",
+                LocalDateTime.of(2025, 6, 8, 13, 4),
+                1,
+                0)
+        );
+        save(new Candidate(0,
+                "Petrov Stas",
+                "ios developer",
+                LocalDateTime.of(2025, 7, 5, 13, 55),
+                1,
+                0)
+        );
+        save(new Candidate(0,
+                "Petrov Emil",
+                "mobile developer",
+                LocalDateTime.of(2025, 6, 15, 13, 4),
+                1,
+                0)
+        );
+        save(new Candidate(0,
+                "Borisova Marina",
+                "mobile developer",
+                LocalDateTime.of(2025, 9, 1, 13, 24),
+                2,
+                0)
+        );
     }
 
     @Override
     public Candidate save(Candidate candidate) {
-        return candidates.computeIfAbsent(nextId.get(), key -> new Candidate(
-                nextId.getAndIncrement(),
-                candidate.getName(),
-                candidate.getDescription(),
-                candidate.getCreationDate(),
-                candidate.getCityId()
-        ));
+        return candidates.computeIfAbsent(nextId.get(), key ->
+                new Candidate(
+                        nextId.getAndIncrement(),
+                        candidate.getName(),
+                        candidate.getDescription(),
+                        candidate.getCreationDate(),
+                        candidate.getCityId(),
+                        candidate.getFileId()
+                )
+        );
     }
 
     @Override
@@ -50,8 +89,10 @@ public class MemoryCandidateRepository implements CandidateRepository {
                         candidate.getName(),
                         candidate.getDescription(),
                         candidate.getCreationDate(),
-                        candidate.getCityId()
-                )) != null;
+                        candidate.getCityId(),
+                        candidate.getFileId()
+                )
+        ) != null;
     }
 
     @Override
