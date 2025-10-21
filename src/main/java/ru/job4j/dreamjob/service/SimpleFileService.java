@@ -21,8 +21,8 @@ public class SimpleFileService implements FileService {
     private final String storageDirectory;
 
     @Autowired
-    public SimpleFileService(FileRepository fileRepository, @Value("${file.directory}") String storageDirectory) {
-        this.fileRepository = fileRepository;
+    public SimpleFileService(FileRepository sql2oFileRepository, @Value("${file.directory}") String storageDirectory) {
+        this.fileRepository = sql2oFileRepository;
         this.storageDirectory = storageDirectory;
         createStorageDirectory(storageDirectory);
     }
