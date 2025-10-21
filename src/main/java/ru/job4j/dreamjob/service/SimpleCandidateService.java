@@ -20,8 +20,8 @@ public class SimpleCandidateService implements CandidateService {
     private final FileService fileService;
 
     @Autowired
-    public SimpleCandidateService(CandidateRepository candidateRepository, FileService fileService) {
-        this.candidateRepository = candidateRepository;
+    public SimpleCandidateService(CandidateRepository sql2oCandidateRepository, FileService fileService) {
+        this.candidateRepository = sql2oCandidateRepository;
         this.fileService = fileService;
     }
 
@@ -39,8 +39,9 @@ public class SimpleCandidateService implements CandidateService {
     @Override
     public boolean deleteById(int id) {
         Optional<Candidate> optCandidate = candidateRepository.findById(id);
+        boolean isDeleted = candidateRepository.deleteById(id);
         optCandidate.ifPresent(candidate -> fileService.deleteId(candidate.getFileId()));
-        return candidateRepository.deleteById(id);
+        return isDeleted;
     }
 
     @Override
